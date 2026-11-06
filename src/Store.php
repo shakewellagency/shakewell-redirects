@@ -80,8 +80,8 @@ final class Store {
 		);
 
 		$types = array(
-			'source'  => array( 'string', 'sanitize_text_field' ),
-			'target'  => array( 'string', 'sanitize_text_field' ),
+			'source'  => array( 'string', array( Rules::class, 'clean' ) ),
+			'target'  => array( 'string', array( Rules::class, 'clean' ) ),
 			'code'    => array( 'integer', 'absint' ),
 			'match'   => array( 'string', 'sanitize_key' ),
 			'enabled' => array( 'boolean', 'rest_sanitize_boolean' ),

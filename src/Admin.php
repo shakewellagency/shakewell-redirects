@@ -123,7 +123,8 @@ final class Admin {
 		if ( ! wp_verify_nonce( $nonce, self::NONCE ) || ! current_user_can( 'edit_post', $post_id ) ) {
 			return;
 		}
-		$text = static fn( string $name ): string => isset( $_POST[ "shakewell_redirects_$name" ] ) ? trim( sanitize_text_field( wp_unslash( $_POST[ "shakewell_redirects_$name" ] ) ) ) : '';
+		// Rules::clean, not sanitize_text_field, so percent-encoded URLs are stored unchanged; validate() refuses unsafe values.
+		$text = static fn( string $name ): string => isset( $_POST[ "shakewell_redirects_$name" ] ) ? Rules::clean( wp_unslash( $_POST[ "shakewell_redirects_$name" ] ) ) : ''; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- cleaned by Rules::clean and validated by Rules::validate before storage.
 		$f    = array(
 			'source'  => $text( 'source' ),
 			'target'  => $text( 'target' ),

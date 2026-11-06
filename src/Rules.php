@@ -17,6 +17,18 @@ final class Rules {
 	public const CODES = array( 301, 302, 307, 308 );
 
 	/**
+	 * Cleans a source or target for storage without changing it: trims, and drops control characters.
+	 *
+	 * Not sanitize_text_field, which deletes percent-encoded octets (%20, %E2%80%93) and so would change URLs.
+	 * validate() refuses anything else that is unsafe.
+	 *
+	 * @param mixed $value Raw value.
+	 */
+	public static function clean( $value ): string {
+		return trim( (string) preg_replace( '/[\x00-\x1f\x7f]/', '', (string) $value ) );
+	}
+
+	/**
 	 * Normalises a path for matching: no query or fragment, decoded, lower case, one leading slash, no trailing slash.
 	 *
 	 * @param string $path Request or source path.

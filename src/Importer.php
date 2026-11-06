@@ -131,8 +131,8 @@ final class Importer {
 		$enabled = strtolower( trim( (string) ( $row['enabled'] ?? '' ) ) );
 		$match   = strtolower( trim( (string) ( $row['match'] ?? '' ) ) );
 		return array(
-			'source'  => trim( (string) $row['source'] ),
-			'target'  => trim( (string) $row['target'] ),
+			'source'  => Rules::clean( $row['source'] ),
+			'target'  => Rules::clean( $row['target'] ),
 			'code'    => '' === $code ? 301 : ( ctype_digit( $code ) ? (int) $code : 0 ),
 			'match'   => '' === $match ? 'exact' : $match,
 			'enabled' => '' === $enabled ? true : ( in_array( $enabled, array( '1', 'true', 'yes' ), true ) ? true : ( in_array( $enabled, array( '0', 'false', 'no' ), true ) ? false : null ) ),

@@ -1,0 +1,5 @@
+source,target,code,match,enabled
+/subscribe/,/subscribe-opt-in-list/,301,exact,1
+/venues/est/menu/,/venues/est/,302,exact,1
+/melbournecup/,https://melbournecupday.merivale.com,301,exact,1
+/whatson/rnbfridays/,/whatson/nightlife/ivy/,301,prefix,1

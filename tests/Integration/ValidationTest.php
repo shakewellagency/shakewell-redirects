@@ -54,7 +54,7 @@ final class ValidationTest extends BaseCase {
 
 	public function test_absolute_http_and_https_targets_are_allowed(): void {
 		$this->assertSame( array(), $this->check( array( 'target' => 'http://a.test/p?q=1#h' ) )['errors'] );
-		$this->assertSame( array(), $this->check( array( 'target' => 'https://melbournecupday.merivale.com' ) )['errors'] );
+		$this->assertSame( array(), $this->check( array( 'target' => 'https://example.test' ) )['errors'] );
 	}
 
 	public function test_code_and_match_are_restricted(): void {

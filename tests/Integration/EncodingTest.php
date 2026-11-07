@@ -16,8 +16,8 @@ use Shakewell\Redirects\Store;
  */
 final class EncodingTest extends BaseCase {
 
-	private const SOURCE = '/whatson/collective-dinner%E2%80%93ballz-deep/';
-	private const TARGET = '/contact/enquiry/?enquiry-type=Lost%20%20Property';
+	private const SOURCE = '/blog/spring-sale%E2%80%93deep-dive/';
+	private const TARGET = '/contact/?topic=Lost%20%20Items';
 
 	public function test_stored_meta_keeps_percent_encoding(): void {
 		$id = $this->make(

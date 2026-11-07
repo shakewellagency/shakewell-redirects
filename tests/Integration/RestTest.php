@@ -22,10 +22,10 @@ final class RestTest extends BaseCase {
 
 	public function test_lists_enabled_redirects_with_only_four_fields_and_no_login(): void {
 		wp_set_current_user( 0 );
-		$this->make( array( 'source' => '/whatson/rnbfridays/', 'target' => '/ivy/', 'code' => 302, 'match' => 'prefix' ) );
+		$this->make( array( 'source' => '/shop/sale/', 'target' => '/offers/', 'code' => 302, 'match' => 'prefix' ) );
 		$res = $this->get();
 		$this->assertSame( 200, $res->get_status() );
-		$this->assertSame( array( array( 'source' => '/whatson/rnbfridays/', 'target' => '/ivy/', 'code' => 302, 'match' => 'prefix' ) ), $res->get_data() );
+		$this->assertSame( array( array( 'source' => '/shop/sale/', 'target' => '/offers/', 'code' => 302, 'match' => 'prefix' ) ), $res->get_data() );
 	}
 
 	public function test_disabled_draft_and_trashed_are_not_listed(): void {

@@ -10,8 +10,8 @@ namespace Shakewell\Redirects\Tests;
 final class ServeTest extends BaseCase {
 
 	public function test_exact_match_redirects_with_stored_target_and_code(): void {
-		$this->make( array( 'source' => '/subscribe/', 'target' => '/subscribe-opt-in-list/' ) );
-		$this->assertSame( array( 'location' => '/subscribe-opt-in-list/', 'status' => 301 ), $this->visit( '/subscribe/' ) );
+		$this->make( array( 'source' => '/newsletter/', 'target' => '/newsletter-signup/' ) );
+		$this->assertSame( array( 'location' => '/newsletter-signup/', 'status' => 301 ), $this->visit( '/newsletter/' ) );
 	}
 
 	public function test_302_is_sent_as_302(): void {
@@ -20,8 +20,8 @@ final class ServeTest extends BaseCase {
 	}
 
 	public function test_match_ignores_case(): void {
-		$this->make( array( 'source' => '/Venues/EST/' ) );
-		$this->assertNotNull( $this->visit( '/venues/est/' ) );
+		$this->make( array( 'source' => '/Book/OLD/' ) );
+		$this->assertNotNull( $this->visit( '/book/old/' ) );
 	}
 
 	public function test_match_ignores_trailing_slash_both_ways(): void {
@@ -42,14 +42,14 @@ final class ServeTest extends BaseCase {
 	}
 
 	public function test_prefix_rule_sends_everything_under_it_to_the_target_without_the_remainder(): void {
-		$this->make( array( 'source' => '/whatson/rnbfridays/', 'target' => '/whatson/nightlife/ivy/', 'match' => 'prefix' ) );
-		$this->assertSame( '/whatson/nightlife/ivy/', $this->visit( '/whatson/rnbfridays/january19/' )['location'] );
-		$this->assertSame( '/whatson/nightlife/ivy/', $this->visit( '/whatson/rnbfridays/' )['location'] );
+		$this->make( array( 'source' => '/shop/sale/', 'target' => '/shop/offers/', 'match' => 'prefix' ) );
+		$this->assertSame( '/shop/offers/', $this->visit( '/shop/sale/january/' )['location'] );
+		$this->assertSame( '/shop/offers/', $this->visit( '/shop/sale/' )['location'] );
 	}
 
 	public function test_prefix_rule_does_not_match_a_sibling_with_the_same_start(): void {
-		$this->make( array( 'source' => '/whatson/rnb/', 'match' => 'prefix' ) );
-		$this->assertNull( $this->visit( '/whatson/rnbfridays/' ) );
+		$this->make( array( 'source' => '/shop/sa/', 'match' => 'prefix' ) );
+		$this->assertNull( $this->visit( '/shop/sale/' ) );
 	}
 
 	public function test_exact_beats_prefix(): void {
@@ -66,8 +66,8 @@ final class ServeTest extends BaseCase {
 	}
 
 	public function test_external_absolute_target_is_used_as_written(): void {
-		$this->make( array( 'source' => '/melbournecup/', 'target' => 'https://melbournecupday.merivale.com' ) );
-		$this->assertSame( 'https://melbournecupday.merivale.com', $this->visit( '/melbournecup/' )['location'] );
+		$this->make( array( 'source' => '/promo/', 'target' => 'https://example.test' ) );
+		$this->assertSame( 'https://example.test', $this->visit( '/promo/' )['location'] );
 	}
 
 	public function test_front_end_can_be_switched_off_with_the_filter(): void {

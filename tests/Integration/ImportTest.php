@@ -24,13 +24,13 @@ final class ImportTest extends BaseCase {
 		$res = Importer::run( self::FIXTURE, false );
 		$this->assertSame( array(), $res['errors'] );
 		$this->assertSame( 4, $res['created'] );
-		$this->assertSame( 'https://melbournecupday.merivale.com', Store::live()[ array_search( '/melbournecup/', wp_list_pluck( Store::live(), 'source' ), true ) ]['target'] );
+		$this->assertSame( 'https://example.test', Store::live()[ array_search( '/promo/', wp_list_pluck( Store::live(), 'source' ), true ) ]['target'] );
 	}
 
 	public function test_imported_rules_behave_like_the_fixture(): void {
 		Importer::run( self::FIXTURE, false );
-		$this->assertSame( array( 'location' => '/venues/est/', 'status' => 302 ), $this->visit( '/venues/est/menu' ) );
-		$this->assertSame( '/whatson/nightlife/ivy/', $this->visit( '/whatson/rnbfridays/january19/' )['location'] );
+		$this->assertSame( array( 'location' => '/book/', 'status' => 302 ), $this->visit( '/book/old' ) );
+		$this->assertSame( '/shop/offers/', $this->visit( '/shop/sale/january/' )['location'] );
 	}
 
 	public function test_dry_run_reports_but_creates_nothing(): void {

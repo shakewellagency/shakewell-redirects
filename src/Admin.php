@@ -72,7 +72,7 @@ final class Admin {
 			<tr>
 				<th scope="row"><label for="shakewell_redirects_source"><?php esc_html_e( 'Source path', 'shakewell-redirects' ); ?></label></th>
 				<td><input type="text" class="regular-text code" id="shakewell_redirects_source" name="shakewell_redirects_source" value="<?php echo esc_attr( $f['source'] ); ?>" aria-describedby="shakewell_redirects_source_help" required>
-				<p class="description" id="shakewell_redirects_source_help"><?php esc_html_e( 'The old path, for example /subscribe/. Case, a trailing slash and the query string are ignored when matching.', 'shakewell-redirects' ); ?></p></td>
+				<p class="description" id="shakewell_redirects_source_help"><?php esc_html_e( 'The old path, for example /newsletter/. Case, a trailing slash and the query string are ignored when matching.', 'shakewell-redirects' ); ?></p></td>
 			</tr>
 			<tr>
 				<th scope="row"><label for="shakewell_redirects_target"><?php esc_html_e( 'Target', 'shakewell-redirects' ); ?></label></th>

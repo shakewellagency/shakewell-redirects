@@ -3,7 +3,7 @@
  * Plugin Name:       Shakewell Redirects
  * Plugin URI:        https://github.com/shakewellagency/shakewell-redirects
  * Description:       Manage redirects in wp-admin, serve them on WordPress and expose them to headless front ends over REST.
- * Version:           0.1.0
+ * Version:           0.1.1
  * Requires at least: 6.5
  * Requires PHP:      8.1
  * Author:            Shakewell
@@ -19,7 +19,7 @@ namespace Shakewell\Redirects;
 
 defined( 'ABSPATH' ) || exit;
 
-const VERSION = '0.1.0';
+const VERSION = '0.1.1';
 const FILE    = __FILE__;
 
 foreach ( array( 'Rules', 'Store', 'Importer', 'Rest', 'Cli', 'Admin', 'Plugin' ) as $shakewell_redirects_class ) {
